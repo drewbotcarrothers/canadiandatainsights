@@ -1,11 +1,13 @@
+import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MetroHubsSidebar from "@/components/home/MetroHubsSidebar";
-import { getTopCities } from "@/lib/data-utils";
+import { getTopCities, getProvinces, generateSlug } from "@/lib/data-utils";
 import { formatNumber } from "@/lib/utils";
 
 export default async function Home() {
   const topCities = await getTopCities(7);
+  const provinces = await getProvinces();
 
   const nationalStats = {
     pop: 36991981,
@@ -157,8 +159,60 @@ export default async function Home() {
           <MetroHubsSidebar cities={topCities} />
         </div>
 
+        {/* ── Provincial Insights Grid ── */}
+        <section className="mt-20">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+            <div>
+              <h2 className="text-primary font-manrope text-3xl font-bold mb-2">Provincial Insights</h2>
+              <p className="text-on_surface-variant font-medium max-w-xl">
+                A high-level overview of demographic shifts across Canada's provinces and territories, based on latest census registers.
+              </p>
+            </div>
+            <Link href="/compare" className="text-primary font-bold text-sm hover:underline flex items-center gap-1 group">
+              View Detailed Comparison
+              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {provinces.map((prov) => (
+              <Link 
+                key={prov.GEO_NAME}
+                href={`/location/${generateSlug(prov.GEO_NAME)}`}
+                className="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10 hover:shadow-ambient hover:border-primary/20 transition-all group"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <span className="text-[10px] font-bold text-on_surface-variant uppercase tracking-widest bg-surface-container-low px-2 py-1 rounded">
+                    {prov.GEO_LEVEL}
+                  </span>
+                  <div className={`text-[10px] font-bold px-2 py-1 rounded ${prov.POP_CHANGE_PCT > 0 ? 'bg-primary/10 text-primary' : 'bg-tertiary/10 text-tertiary'}`}>
+                    {prov.POP_CHANGE_PCT > 0 ? '+' : ''}{prov.POP_CHANGE_PCT.toFixed(1)}%
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-primary font-manrope mb-4 group-hover:text-primary-container transition-colors">
+                  {prov.GEO_NAME}
+                </h3>
+                <div className="flex flex-col gap-1">
+                  <span className="text-[10px] font-medium text-on_surface-variant uppercase tracking-tighter">Population</span>
+                  <span className="text-2xl font-black text-on_surface font-manrope">
+                    {formatNumber(prov.POP_2021)}
+                  </span>
+                </div>
+                <div className="mt-6 flex items-center text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                  View Profile
+                  <svg className="ml-1 w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                  </svg>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* ── Featured Analysis Section ── */}
-        <section className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12">
+        <section className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
             <h3 className="font-manrope font-bold text-3xl text-primary mb-6">Demographic Shifts</h3>
             <div className="space-y-6">
