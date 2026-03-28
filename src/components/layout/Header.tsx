@@ -4,8 +4,10 @@ export default function Header() {
   return (
     <header className="bg-slate-50/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
       <div className="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
-        <Link href="/" className="text-2xl font-black text-primary tracking-tighter font-manrope">
-          CanadaData Atlas
+        <Link href="/" className="text-2xl font-black tracking-tighter font-manrope">
+          <span className="text-primary">Canadian</span>
+          <span className="text-tertiary">Data</span>
+          <span className="text-primary">Insights</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
