@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Toronto | CanadaData Atlas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#d3e4ff",
+                        "surface-bright": "#f9f9fd",
+                        "on-tertiary-container": "#ffa099",
+                        "on-secondary-fixed": "#171c21",
+                        "surface-container-low": "#f3f3f7",
+                        "on-surface-variant": "#424750",
+                        "on-error-container": "#93000a",
+                        "background": "#f9f9fd",
+                        "on-surface": "#191c1e",
+                        "secondary-fixed-dim": "#c2c7ce",
+                        "primary": "#003461",
+                        "tertiary-fixed-dim": "#ffb3ad",
+                        "inverse-on-surface": "#f0f0f4",
+                        "inverse-primary": "#a3c9ff",
+                        "surface-tint": "#27609d",
+                        "on-background": "#191c1e",
+                        "tertiary-container": "#990014",
+                        "surface-container": "#edeef1",
+                        "outline": "#727781",
+                        "tertiary": "#6e000b",
+                        "surface-container-high": "#e7e8eb",
+                        "on-tertiary-fixed-variant": "#930013",
+                        "surface-dim": "#d9dadd",
+                        "primary-fixed-dim": "#a3c9ff",
+                        "primary-container": "#004b87",
+                        "tertiary-fixed": "#ffdad7",
+                        "on-primary-fixed": "#001c38",
+                        "error": "#ba1a1a",
+                        "surface": "#f9f9fd",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#42474d",
+                        "inverse-surface": "#2e3133",
+                        "secondary-fixed": "#dee3ea",
+                        "on-primary-fixed-variant": "#004882",
+                        "on-tertiary-fixed": "#410004",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#8abcff",
+                        "surface-variant": "#e2e2e6",
+                        "outline-variant": "#c2c6d1",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e2e2e6",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#5a5f65",
+                        "on-secondary-container": "#60656b",
+                        "secondary-container": "#dee3ea",
+                        "on-tertiary": "#ffffff"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9fd; color: #191c1e; }
+        .font-headline { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-panel { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation Bar (Shared Component) -->
+<nav class="bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-blue-900 dark:text-blue-50 tracking-tighter font-headline">CanadaData Atlas</span>
+<div class="hidden md:flex gap-6">
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-900 transition-colors" href="#">Dashboard</a>
+<a class="text-blue-900 dark:text-blue-50 font-bold border-b-2 border-blue-900 dark:border-blue-400 pb-1" href="#">Comparisons</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-900 transition-colors" href="#">Sources</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-900 transition-colors" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-100/50 rounded-md transition-all active:scale-95">
+<span class="material-symbols-outlined text-slate-600">settings</span>
+</button>
+<button class="p-2 hover:bg-slate-100/50 rounded-md transition-all active:scale-95">
+<span class="material-symbols-outlined text-slate-600">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="max-w-screen-2xl mx-auto px-6 py-12">
+<!-- Header Section -->
+<header class="mb-16">
+<a class="inline-flex items-center gap-2 text-primary font-semibold mb-6 hover:translate-x-[-4px] transition-transform" href="#">
+<span class="material-symbols-outlined">arrow_back</span>
+<span class="font-label uppercase tracking-widest text-xs">Back to Dashboard</span>
+</a>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="text-6xl md:text-8xl font-headline font-extrabold text-primary tracking-tighter mb-2">Toronto</h1>
+<p class="text-xl md:text-2xl font-body text-secondary font-medium italic">Ontario, Canada</p>
+</div>
+<div class="max-w-xl">
+<p class="text-on-surface-variant leading-relaxed text-lg">
+                        As Canada's largest city and the primary economic hub of the nation, Toronto serves as a global leader in business, finance, technology, and culture. A diverse metropolis nestled on the shores of Lake Ontario.
+                    </p>
+</div>
+</div>
+</header>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Key Metrics (Asymmetric Span) -->
+<div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-1">
+<div class="bg-surface-container-lowest p-8 border-l-4 border-primary">
+<p class="text-xs font-label uppercase tracking-widest text-on-surface-variant mb-4">Total Population</p>
+<p class="text-4xl font-headline font-extrabold text-primary">2.93M</p>
+<p class="text-sm text-secondary mt-2">2021 Census Data</p>
+</div>
+<div class="bg-surface-container-low p-8">
+<p class="text-xs font-label uppercase tracking-widest text-on-surface-variant mb-4">Growth Rate</p>
+<p class="text-4xl font-headline font-extrabold text-primary">+2.3%</p>
+<p class="text-sm text-secondary mt-2">Annual increase</p>
+</div>
+<div class="bg-surface-container-lowest p-8">
+<p class="text-xs font-label uppercase tracking-widest text-on-surface-variant mb-4">Land Area</p>
+<p class="text-4xl font-headline font-extrabold text-primary">630.2 <span class="text-xl">km²</span></p>
+<p class="text-sm text-secondary mt-2">Core Municipal Area</p>
+</div>
+</div>
+<!-- Income & Housing (Vertical Emphasis) -->
+<div class="md:col-span-4 bg-primary text-on-primary p-8 flex flex-col justify-between">
+<div>
+<h3 class="font-headline font-bold text-xl mb-8">Economic Standing</h3>
+<div class="space-y-8">
+<div>
+<p class="text-xs font-label uppercase tracking-widest opacity-70 mb-1">Median Household Income</p>
+<p class="text-3xl font-headline font-bold">$84,000</p>
+</div>
+<div>
+<p class="text-xs font-label uppercase tracking-widest opacity-70 mb-1">Avg. Monthly Rent</p>
+<p class="text-3xl font-headline font-bold">$2,450</p>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-primary-container">
+<div class="flex justify-between items-center">
+<span class="text-sm">Home Ownership</span>
+<span class="font-bold">53%</span>
+</div>
+<div class="w-full bg-primary-container h-1.5 mt-2 rounded-full overflow-hidden">
+<div class="bg-on-primary-container h-full" style="width: 53%"></div>
+</div>
+</div>
+</div>
+<!-- Age Distribution Visualization -->
+<div class="md:col-span-7 bg-surface-container p-8">
+<div class="flex justify-between items-start mb-10">
+<h3 class="font-headline font-bold text-2xl text-primary">Age Distribution</h3>
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<div class="space-y-6">
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-sm font-semibold">Youth (0-14)</span>
+<span class="text-sm font-bold text-primary">13.8%</span>
+</div>
+<div class="w-full bg-white h-8 rounded-sm overflow-hidden flex">
+<div class="bg-primary-container h-full" style="width: 13.8%"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-sm font-semibold">Working Age (15-64)</span>
+<span class="text-sm font-bold text-primary">70.6%</span>
+</div>
+<div class="w-full bg-white h-8 rounded-sm overflow-hidden flex">
+<div class="bg-primary h-full" style="width: 70.6%"></div>
+</div>
+</div>
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-sm font-semibold">Seniors (65+)</span>
+<span class="text-sm font-bold text-primary">15.6%</span>
+</div>
+<div class="w-full bg-white h-8 rounded-sm overflow-hidden flex">
+<div class="bg-tertiary h-full" style="width: 15.6%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Neighborhood Highlights -->
+<div class="md:col-span-5 bg-surface-container-low p-8 relative overflow-hidden group">
+<div class="relative z-10">
+<h3 class="font-headline font-bold text-2xl text-primary mb-6">Regional Districts</h3>
+<ul class="space-y-4">
+<li class="flex items-center gap-4 p-3 bg-surface-container-lowest transition-all hover:translate-x-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-bold text-primary">Downtown Core</span>
+<span class="ml-auto text-xs text-secondary">High Density</span>
+</li>
+<li class="flex items-center gap-4 p-3 bg-surface-container-lowest transition-all hover:translate-x-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-bold text-primary">Scarborough</span>
+<span class="ml-auto text-xs text-secondary">Multicultural Hub</span>
+</li>
+<li class="flex items-center gap-4 p-3 bg-surface-container-lowest transition-all hover:translate-x-2">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-bold text-primary">North York</span>
+<span class="ml-auto text-xs text-secondary">Business Centre</span>
+</li>
+<li class="flex items-center gap-4 p-3 bg-surface-container-lowest transition-all hover:translate-x-2">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-bold text-primary">Etobicoke</span>
+<span class="ml-auto text-xs text-secondary">Industrial &amp; Residential</span>
+</li>
+</ul>
+</div>
+<!-- Abstract Map Decoration -->
+<div class="absolute -right-20 -bottom-20 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-700">
+<img alt="Abstract geographical map outline of Toronto districts" class="w-80 h-80 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcEPQCJNZ_GhlyyI6MCPK0jd59E_IZ8V43EJI7OyhSbgcYTBguYOc20NKYCuIzSLkjA62KT1eyrdKghJCOdkYNC8saj2hNqbvTJfgJSW7isnkCXZ-1EEurbfHmYYMi6ZtUJs58S23dMsEreH8s9CE2nUJL1iSJ0Y8YUMOe-V9j7CJdHlvrrL_ooUNgCLYFQU6VsnrIyv1KqgNKLBmuYV_oNWiclAqs4hs62fzXWoCfQsU63Gz6IvE4IK7KEqeW_tsVfo4cqiRF2A"/>
+</div>
+</div>
+<!-- Education Attainment Section (NEW) -->
+<div class="md:col-span-7 bg-surface-container-lowest p-8 border border-surface-container">
+<div class="flex justify-between items-start mb-10">
+<div>
+<h3 class="font-headline font-bold text-2xl text-primary">Education Attainment</h3>
+<p class="text-sm text-secondary mt-1">Highest level of education for population aged 25-64</p>
+</div>
+<span class="material-symbols-outlined text-primary">school</span>
+</div>
+<div class="space-y-8">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+<div>
+<p class="text-sm font-bold text-primary-container uppercase tracking-wider mb-1">Post-Graduate Degree</p>
+<p class="text-4xl font-headline font-extrabold text-primary">22.4%</p>
+</div>
+<div class="w-full bg-surface-container-low h-3 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 22.4%"></div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+<div>
+<p class="text-sm font-bold text-primary-container uppercase tracking-wider mb-1">Bachelor's Degree</p>
+<p class="text-4xl font-headline font-extrabold text-primary">35.2%</p>
+</div>
+<div class="w-full bg-surface-container-low h-3 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full" style="width: 35.2%"></div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+<div>
+<p class="text-sm font-bold text-primary-container uppercase tracking-wider mb-1">High School &amp; Equivalency</p>
+<p class="text-4xl font-headline font-extrabold text-primary">21.8%</p>
+</div>
+<div class="w-full bg-surface-container-low h-3 rounded-full overflow-hidden">
+<div class="bg-outline-variant h-full" style="width: 21.8%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Employment by Sector Section (NEW) -->
+<div class="md:col-span-5 bg-white p-8 border border-surface-container-low">
+<h3 class="font-headline font-bold text-2xl text-primary mb-8">Employment by Sector</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest border-l-4 border-primary shadow-sm hover:bg-surface-container-low transition-colors cursor-default">
+<div class="flex flex-col">
+<span class="text-xs font-label uppercase tracking-widest text-secondary">Financial Services</span>
+<span class="font-bold text-primary text-lg">Finance &amp; Insurance</span>
+</div>
+<div class="text-right">
+<p class="text-2xl font-headline font-bold text-primary">12.5%</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest border-l-4 border-primary-container shadow-sm hover:bg-surface-container-low transition-colors cursor-default">
+<div class="flex flex-col">
+<span class="text-xs font-label uppercase tracking-widest text-secondary">Tech &amp; Digital</span>
+<span class="font-bold text-primary text-lg">Technology</span>
+</div>
+<div class="text-right">
+<p class="text-2xl font-headline font-bold text-primary">10.8%</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest border-l-4 border-tertiary shadow-sm hover:bg-surface-container-low transition-colors cursor-default">
+<div class="flex flex-col">
+<span class="text-xs font-label uppercase tracking-widest text-secondary">Medical &amp; Social</span>
+<span class="font-bold text-primary text-lg">Healthcare</span>
+</div>
+<div class="text-right">
+<p class="text-2xl font-headline font-bold text-primary">9.4%</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest border-l-4 border-outline shadow-sm hover:bg-surface-container-low transition-colors cursor-default">
+<div class="flex flex-col">
+<span class="text-xs font-label uppercase tracking-widest text-secondary">Industrial Production</span>
+<span class="font-bold text-primary text-lg">Manufacturing</span>
+</div>
+<div class="text-right">
+<p class="text-2xl font-headline font-bold text-primary">7.2%</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 border border-primary text-primary font-bold font-label uppercase text-xs tracking-widest hover:bg-primary hover:text-white transition-all">
+                    View All 18 Sectors
+                </button>
+</div>
+<!-- Language Breakdown (Large Footer Card) -->
+<div class="md:col-span-12 bg-surface-container-lowest p-10 mt-6">
+<div class="flex flex-col md:flex-row gap-12">
+<div class="md:w-1/3">
+<h3 class="font-headline font-bold text-3xl text-primary mb-4 leading-tight">Linguistic Mosaic</h3>
+<p class="text-on-surface-variant">Toronto is one of the world's most diverse cities, with over 160 languages spoken across its neighborhoods.</p>
+<div class="mt-8 flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-primary rounded-full"></span>
+<span class="text-xs font-bold uppercase">Official</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-tertiary rounded-full"></span>
+<span class="text-xs font-bold uppercase">Non-Official</span>
+</div>
+</div>
+</div>
+<div class="md:w-2/3 grid grid-cols-2 sm:grid-cols-3 gap-8">
+<div class="border-l-2 border-surface-container-high pl-6">
+<p class="text-xs font-label text-secondary mb-1">English</p>
+<p class="text-2xl font-headline font-bold text-primary">55%</p>
+</div>
+<div class="border-l-2 border-surface-container-high pl-6">
+<p class="text-xs font-label text-secondary mb-1">Cantonese</p>
+<p class="text-2xl font-headline font-bold text-tertiary">3.4%</p>
+</div>
+<div class="border-l-2 border-surface-container-high pl-6">
+<p class="text-xs font-label text-secondary mb-1">Mandarin</p>
+<p class="text-2xl font-headline font-bold text-tertiary">3.3%</p>
+</div>
+<div class="border-l-2 border-surface-container-high pl-6">
+<p class="text-xs font-label text-secondary mb-1">Italian</p>
+<p class="text-2xl font-headline font-bold text-tertiary">2.2%</p>
+</div>
+<div class="border-l-2 border-surface-container-high pl-6">
+<p class="text-xs font-label text-secondary mb-1">Tagalog</p>
+<p class="text-2xl font-headline font-bold text-tertiary">2.1%</p>
+</div>
+<div class="border-l-2 border-surface-container-high pl-6">
+<p class="text-xs font-label text-secondary mb-1">French</p>
+<p class="text-2xl font-headline font-bold text-primary">1.3%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-slate-100 dark:bg-slate-950 full-width py-12 px-8 mt-24">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-slate-200/50 dark:border-slate-800/50 pt-8 max-w-screen-2xl mx-auto">
+<span class="font-bold text-slate-900 dark:text-slate-50 font-headline uppercase tracking-widest text-sm">CanadaData Atlas</span>
+<div class="flex gap-8">
+<a class="font-medium Inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-blue-900 transition-colors" href="#">Census Methodology</a>
+<a class="font-medium Inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-blue-900 transition-colors" href="#">Privacy Policy</a>
+<a class="font-medium Inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-blue-900 transition-colors" href="#">Terms of Service</a>
+<a class="font-medium Inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-blue-900 transition-colors" href="#">Open Data Portal</a>
+</div>
+<p class="font-medium Inter text-xs uppercase tracking-widest text-slate-400">© 2024 Statistics Canada Data Atlas. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

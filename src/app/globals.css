@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f9f9fd;
+  --foreground: #191c1e;
+  --primary: #003461;
+  --tertiary: #6e000b;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-manrope);
+}
+
+@layer components {
+  /* No-Line Rule: Sections are defined by background color shifts. */
+  .section-low {
+    @apply bg-surface-container-low;
+  }
+  .section-base {
+    @apply bg-background;
+  }
+  
+  /* Glassmorphism Rule: 80% opacity + 12px backdrop blur. */
+  .glass {
+    @apply bg-white/80 backdrop-blur-[12px];
+  }
+
+  /* Tonal Layering: Define depth through color rather than shadows. */
+  .card-tonal {
+    @apply bg-surface-container-lowest;
+  }
+  
+  /* Signature Accent Bar: 4px vertical stripe of tertiary red. */
+  .accent-bar {
+    @apply border-l-4 border-tertiary;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

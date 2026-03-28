@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CanadaData Atlas | Census Demographics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#004b87",
+                        "background": "#f9f9fd",
+                        "inverse-on-surface": "#f0f0f4",
+                        "on-secondary-fixed-variant": "#42474d",
+                        "primary": "#003461",
+                        "tertiary-fixed": "#ffdad7",
+                        "secondary-fixed": "#dee3ea",
+                        "secondary-fixed-dim": "#c2c7ce",
+                        "on-surface": "#191c1e",
+                        "primary-fixed": "#d3e4ff",
+                        "secondary": "#5a5f65",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e2e2e6",
+                        "primary-fixed-dim": "#a3c9ff",
+                        "surface-bright": "#f9f9fd",
+                        "surface-container-low": "#f3f3f7",
+                        "on-primary-fixed": "#001c38",
+                        "outline": "#727781",
+                        "on-primary-container": "#8abcff",
+                        "on-background": "#191c1e",
+                        "surface-dim": "#d9dadd",
+                        "outline-variant": "#c2c6d1",
+                        "surface-tint": "#27609d",
+                        "on-secondary-fixed": "#171c21",
+                        "surface-container-high": "#e7e8eb",
+                        "surface-container": "#edeef1",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#ffb3ad",
+                        "surface-container-highest": "#e2e2e6",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#004882",
+                        "on-tertiary-fixed-variant": "#930013",
+                        "secondary-container": "#dee3ea",
+                        "on-secondary-container": "#60656b",
+                        "inverse-surface": "#2e3133",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#a3c9ff",
+                        "surface": "#f9f9fd",
+                        "on-tertiary-container": "#ffa099",
+                        "tertiary": "#6e000b",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#410004",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#424750",
+                        "tertiary-container": "#990014"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+        }
+        @media (max-width: 1024px) {
+            .editorial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Bar -->
+<header class="bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-black text-blue-900 dark:text-blue-50 tracking-tighter font-headline">
+                CanadaData Atlas
+            </div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-blue-900 dark:text-blue-50 font-bold border-b-2 border-blue-900 dark:border-blue-400 pb-1 font-body" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-900 dark:hover:text-blue-200 transition-colors font-body" href="#">Comparisons</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-900 dark:hover:text-blue-200 transition-colors font-body" href="#">Sources</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-blue-900 dark:hover:text-blue-200 transition-colors font-body" href="#">About</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm" data-icon="search">search</span>
+<input class="bg-surface-container-highest border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/40 transition-all w-64" placeholder="Search a city..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-md transition-all">
+<span class="material-symbols-outlined text-blue-900 dark:text-blue-100" data-icon="settings">settings</span>
+</button>
+<button class="p-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-md transition-all">
+<span class="material-symbols-outlined text-blue-900 dark:text-blue-100" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-screen-2xl mx-auto px-6 py-8">
+<!-- National Census Statistics Bento -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border-l-4 border-primary relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-6xl" data-icon="groups">groups</span>
+</div>
+<p class="text-label-sm font-medium text-on-surface-variant uppercase tracking-widest mb-2 font-label">Total Population</p>
+<h2 class="text-4xl font-extrabold text-primary font-headline tracking-tight">38,246,108</h2>
+<div class="mt-4 flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+<span class="text-sm">+5.2% since 2016</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border-l-4 border-tertiary relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-6xl" data-icon="query_stats">query_stats</span>
+</div>
+<p class="text-label-sm font-medium text-on-surface-variant uppercase tracking-widest mb-2 font-label">Growth Rate</p>
+<h2 class="text-4xl font-extrabold text-primary font-headline tracking-tight">1.8% <span class="text-lg font-normal text-on-surface-variant">Annual</span></h2>
+<div class="mt-4 flex items-center gap-2 text-tertiary font-bold">
+<span class="material-symbols-outlined text-sm" data-icon="stars">stars</span>
+<span class="text-sm">G7 Leading Factor</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border-l-4 border-primary relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-6xl" data-icon="payments">payments</span>
+</div>
+<p class="text-label-sm font-medium text-on-surface-variant uppercase tracking-widest mb-2 font-label">Median Income</p>
+<h2 class="text-4xl font-extrabold text-primary font-headline tracking-tight">$84,000</h2>
+<div class="mt-4 flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined text-sm" data-icon="info">info</span>
+<span class="text-sm">Household Adjusted</span>
+</div>
+</div>
+</section>
+<!-- Main Content Grid -->
+<div class="editorial-grid items-start">
+<!-- Map Hero Section -->
+<section class="relative bg-surface-container rounded-xl overflow-hidden min-h-[600px] flex flex-col">
+<div class="absolute inset-0 z-0 bg-surface-dim">
+<img class="w-full h-full object-cover opacity-40 mix-blend-multiply filter grayscale" data-alt="Topographic map of Canada with elegant styling" data-location="Canada" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw7Iz89QYSCLhhrOQ_eV7g6GrEhIRojDE7dz8eu3DQREaI8DDTtudvv0Yz06PCAagV8JlWFQHneZbJgfViS145hTyv8WX-v70UA8Rx6m6YFNczNVyUd-sYUJdFzgk3vYCIy6pgW-pgCiJ_yAu8uR8iN1SIOf54R-XD7Z4sKrRKmTv7QCnoMHja7QtlT-MwYg5m8np9sq6-6vHlLBwCbGwSVUsZrsvZwZBJUKdPVvR6rwxVCEjm2UqAdcIOZ9jIwSAU_Tv2-sW7SA"/>
+</div>
+<!-- Map Overlay Content -->
+<div class="relative z-10 p-8 flex flex-col h-full justify-between pointer-events-none">
+<div class="max-w-md pointer-events-auto">
+<span class="inline-block bg-primary text-on-primary px-3 py-1 rounded-full text-[10px] font-bold tracking-tighter uppercase mb-4">Interactive Atlas</span>
+<h1 class="text-5xl font-extrabold text-primary font-headline leading-tight mb-4">National Population Density Explorer</h1>
+<p class="text-on-surface-variant leading-relaxed font-medium">Discover demographic insights across 32 major metropolitan hubs. Hover over markers to see real-time census adjustments.</p>
+</div>
+<!-- City Markers (Simulated) -->
+<div class="absolute inset-0">
+<!-- Toronto -->
+<div class="absolute top-[75%] left-[70%] group pointer-events-auto">
+<div class="w-4 h-4 bg-tertiary rounded-full ring-4 ring-tertiary/20 cursor-pointer animate-pulse"></div>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-32 bg-surface-container-lowest p-2 rounded shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+<p class="text-xs font-bold text-primary">Toronto</p>
+<p class="text-[10px] text-on-surface-variant">Pop: 2.93M</p>
+</div>
+</div>
+<!-- Vancouver -->
+<div class="absolute top-[65%] left-[15%] group pointer-events-auto">
+<div class="w-4 h-4 bg-primary rounded-full ring-4 ring-primary/20 cursor-pointer"></div>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-32 bg-surface-container-lowest p-2 rounded shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+<p class="text-xs font-bold text-primary">Vancouver</p>
+<p class="text-[10px] text-on-surface-variant">Pop: 675k</p>
+</div>
+</div>
+<!-- Montreal -->
+<div class="absolute top-[72%] left-[78%] group pointer-events-auto">
+<div class="w-4 h-4 bg-primary rounded-full ring-4 ring-primary/20 cursor-pointer"></div>
+</div>
+<!-- Ottawa -->
+<div class="absolute top-[74%] left-[74%] group pointer-events-auto">
+<div class="w-4 h-4 bg-primary rounded-full ring-4 ring-primary/20 cursor-pointer"></div>
+</div>
+</div>
+<div class="flex gap-4 pointer-events-auto">
+<div class="bg-surface-container-lowest/90 backdrop-blur-sm p-4 rounded-lg flex gap-6 items-center shadow-lg border-l-4 border-primary">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-on-surface-variant">Data Maturity</span>
+<span class="text-sm font-bold text-primary">2021 Census Ref.</span>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-on-surface-variant">Coverage</span>
+<span class="text-sm font-bold text-primary">98.4% National</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Sidebar Panel -->
+<aside class="bg-surface-container-low rounded-xl flex flex-col max-h-[600px]">
+<div class="p-6 bg-surface-container-highest rounded-t-xl">
+<h3 class="font-headline font-bold text-xl text-primary flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="location_city">location_city</span>
+                        Metropolitan Hubs
+                    </h3>
+<p class="text-xs text-on-surface-variant mt-1 font-medium">32 major urban centers analyzed</p>
+</div>
+<div class="overflow-y-auto p-4 flex flex-col gap-3 no-scrollbar">
+<!-- Toronto -->
+<button class="bg-surface-container-lowest p-4 rounded-lg text-left group hover:bg-primary-fixed transition-all border-l-4 border-tertiary">
+<div class="flex justify-between items-start mb-1">
+<span class="font-bold text-on-surface group-hover:text-primary transition-colors font-headline">Toronto</span>
+<span class="text-[10px] font-bold text-tertiary bg-tertiary-fixed px-2 py-0.5 rounded">Major</span>
+</div>
+<div class="flex gap-4 text-xs text-on-surface-variant font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="person">person</span> 2.93M</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="calendar_month">calendar_month</span> Age: 39.4</span>
+</div>
+</button>
+<!-- Montreal -->
+<button class="bg-surface-container-lowest p-4 rounded-lg text-left group hover:bg-primary-fixed transition-all">
+<div class="flex justify-between items-start mb-1">
+<span class="font-bold text-on-surface group-hover:text-primary transition-colors font-headline">Montreal</span>
+</div>
+<div class="flex gap-4 text-xs text-on-surface-variant font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="person">person</span> 1.78M</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="calendar_month">calendar_month</span> Age: 38.2</span>
+</div>
+</button>
+<!-- Vancouver -->
+<button class="bg-surface-container-lowest p-4 rounded-lg text-left group hover:bg-primary-fixed transition-all">
+<div class="flex justify-between items-start mb-1">
+<span class="font-bold text-on-surface group-hover:text-primary transition-colors font-headline">Vancouver</span>
+</div>
+<div class="flex gap-4 text-xs text-on-surface-variant font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="person">person</span> 675,218</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="calendar_month">calendar_month</span> Age: 40.1</span>
+</div>
+</button>
+<!-- Ottawa -->
+<button class="bg-surface-container-lowest p-4 rounded-lg text-left group hover:bg-primary-fixed transition-all">
+<div class="flex justify-between items-start mb-1">
+<span class="font-bold text-on-surface group-hover:text-primary transition-colors font-headline">Ottawa</span>
+</div>
+<div class="flex gap-4 text-xs text-on-surface-variant font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="person">person</span> 1.01M</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="calendar_month">calendar_month</span> Age: 38.8</span>
+</div>
+</button>
+<!-- Calgary -->
+<button class="bg-surface-container-lowest p-4 rounded-lg text-left group hover:bg-primary-fixed transition-all">
+<div class="flex justify-between items-start mb-1">
+<span class="font-bold text-on-surface group-hover:text-primary transition-colors font-headline">Calgary</span>
+</div>
+<div class="flex gap-4 text-xs text-on-surface-variant font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="person">person</span> 1.30M</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="calendar_month">calendar_month</span> Age: 36.4</span>
+</div>
+</button>
+<!-- Edmonton -->
+<button class="bg-surface-container-lowest p-4 rounded-lg text-left group hover:bg-primary-fixed transition-all">
+<div class="flex justify-between items-start mb-1">
+<span class="font-bold text-on-surface group-hover:text-primary transition-colors font-headline">Edmonton</span>
+</div>
+<div class="flex gap-4 text-xs text-on-surface-variant font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="person">person</span> 1.01M</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="calendar_month">calendar_month</span> Age: 36.0</span>
+</div>
+</button>
+<!-- Quebec City -->
+<button class="bg-surface-container-lowest p-4 rounded-lg text-left group hover:bg-primary-fixed transition-all">
+<div class="flex justify-between items-start mb-1">
+<span class="font-bold text-on-surface group-hover:text-primary transition-colors font-headline">Quebec City</span>
+</div>
+<div class="flex gap-4 text-xs text-on-surface-variant font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="person">person</span> 542,298</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="calendar_month">calendar_month</span> Age: 43.1</span>
+</div>
+</button>
+<!-- Simulating the rest of the 32 with a simplified block -->
+<div class="p-4 text-center">
+<span class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest">+ 25 Additional Hubs</span>
+</div>
+</div>
+<div class="mt-auto p-4 bg-surface-container-low border-t border-outline-variant/10">
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg font-bold text-sm hover:bg-primary-container transition-all flex items-center justify-center gap-2">
+                        Download Full Dataset
+                        <span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+</button>
+</div>
+</aside>
+</div>
+<!-- Featured Analysis Section -->
+<section class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12">
+<div>
+<h3 class="font-headline font-bold text-3xl text-primary mb-6">Demographic Shifts</h3>
+<div class="space-y-6">
+<div class="flex gap-4 p-4 rounded-xl hover:bg-surface-container-low transition-colors group">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+</div>
+<div>
+<h4 class="font-bold text-lg group-hover:text-primary transition-colors">Urban Migration Patterns</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Analysis of intra-provincial movement reveals a significant trend towards mid-sized metropolitan areas like Kelowna and Halifax.</p>
+</div>
+</div>
+<div class="flex gap-4 p-4 rounded-xl hover:bg-surface-container-low transition-colors group">
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined" data-icon="elderly">elderly</span>
+</div>
+<div>
+<h4 class="font-bold text-lg group-hover:text-tertiary transition-colors">The Aging Frontier</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Median age distribution across the Maritimes has reached an all-time high, necessitating new infrastructure paradigms.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary p-8 rounded-2xl relative overflow-hidden flex flex-col justify-center">
+<div class="absolute inset-0 opacity-10">
+<img class="w-full h-full object-cover" data-alt="Abstract data visualization network pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWDWV_-zIRIirXVH2lKH6oe1WV56w_Hubu5gXZbVtwPRBXM8-t79Pb_Apr_HlmRofQkd1-FtyN-t1hSJ6UBcHD9uAg079yyU63QToqK3COP04Y8GxiayCq9vsKXduaKM4fvP4EEDYUT0UwR4mEbZ3PT2d-9t0sDCR-2g3Fnpn_IUBQGftzqLDWyXX99ji5sjqZDVdXECF1mBl8MxoyvvvBeQzDPMDUEcis_YgulhQUJxE0sdj9yopqqRhKj9pP7O05CEjClyQOHQ"/>
+</div>
+<div class="relative z-10 text-on-primary">
+<h3 class="text-2xl font-bold font-headline mb-4">Deep Dive: Census Methodology</h3>
+<p class="text-on-primary/80 mb-8 max-w-sm">Understand how we utilize advanced satellite imagery and ground-truth surveys to validate the 2021-2024 demographic projections.</p>
+<button class="bg-surface-container-lowest text-primary px-6 py-2.5 rounded-lg font-bold text-sm hover:scale-105 transition-transform flex items-center gap-2 self-start">
+                        Read Whitepaper
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-100 dark:bg-slate-950 full-width py-12 px-8 mt-20">
+<div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 border-t border-slate-200/50 dark:border-slate-800/50 pt-12">
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="font-bold text-slate-900 dark:text-slate-50 text-xl font-headline tracking-tighter">CanadaData Atlas</div>
+<p class="font-medium Inter text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">© 2024 Statistics Canada Data Atlas. All rights reserved.</p>
+</div>
+<nav class="flex flex-wrap justify-center gap-8">
+<a class="font-medium Inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors" href="#">Census Methodology</a>
+<a class="font-medium Inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors" href="#">Privacy Policy</a>
+<a class="font-medium Inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors" href="#">Terms of Service</a>
+<a class="font-medium Inter text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors" href="#">Open Data Portal</a>
+</nav>
+<div class="flex gap-4">
+<button class="text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+<button class="text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="alternate_email">alternate_email</span>
+</button>
+</div>
+</div>
+<div class="max-w-screen-2xl mx-auto mt-8 text-center md:text-left">
+<p class="text-[10px] text-on-surface-variant/60 max-w-2xl leading-relaxed">
+                Source: Statistics Canada, Census of Population. All data visualized represents official federal registries and metropolitan hub projections. High-accuracy mapping provided by the Canadian Geomatics Infrastructure.
+            </p>
+</div>
+</footer>
+</body></html>

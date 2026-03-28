@@ -1,0 +1,34 @@
+{
+  "name": "canadiandatainsights",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "clsx": "latest",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "latest",
+    "next": "latest",
+    "papaparse": "^5.5.3",
+    "react": "latest",
+    "react-dom": "latest",
+    "recharts": "^3.8.1",
+    "tailwind-merge": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.37",
+    "@types/papaparse": "^5.5.2",
+    "@types/react": "^18.3.28",
+    "@types/react-dom": "^18.3.7",
+    "autoprefixer": "^10.4.19",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.1",
+    "typescript": "latest"
+  }
+}

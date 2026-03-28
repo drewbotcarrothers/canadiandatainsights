@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+build/
+.DS_Store
+*.log
+.env*
+!.env.example
+Data/2021_census_data.csv
+Data/Census_Data_CD.csv
