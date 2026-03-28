@@ -42,10 +42,31 @@ h1, h2, h3, h4, h5, h6 {
   .accent-bar {
     @apply border-l-4 border-tertiary;
   }
+
+  /* Editorial Grid: Map hero + sidebar layout from reference */
+  .editorial-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2rem;
+  }
+  @media (max-width: 1024px) {
+    .editorial-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Hide scrollbar for sidebar overflow */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }

@@ -8,3 +8,6 @@ build/
 !.env.example
 Data/2021_census_data.csv
 Data/Census_Data_CD.csv
+Map_Images/
+Legacy Code/
+census_demographics.py
