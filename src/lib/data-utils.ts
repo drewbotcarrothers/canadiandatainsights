@@ -71,3 +71,12 @@ export async function getTopCities(limit = 10): Promise<LocationData[]> {
     .sort((a, b) => (b.POP_2021 || 0) - (a.POP_2021 || 0))
     .slice(0, limit);
 }
+
+export async function getSearchIndex() {
+  const locations = await getAllLocations();
+  return locations.map((loc) => ({
+    name: loc.GEO_NAME,
+    level: loc.GEO_LEVEL,
+    slug: generateSlug(loc.GEO_NAME),
+  }));
+}
