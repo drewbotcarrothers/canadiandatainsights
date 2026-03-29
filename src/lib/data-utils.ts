@@ -91,3 +91,10 @@ export async function getSearchIndex() {
     slug: generateSlug(loc.GEO_NAME),
   }));
 }
+
+export async function getLocationsByProvince(provinceName: string): Promise<LocationData[]> {
+  const locations = await getAllLocations();
+  return locations
+    .filter((loc) => loc.GEO_LEVEL === "Census subdivision" && loc.PROVINCE === provinceName)
+    .sort((a, b) => (b.POP_2021 || 0) - (a.POP_2021 || 0));
+}
