@@ -2,6 +2,7 @@ import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MetroHubsSidebar from "@/components/home/MetroHubsSidebar";
+import CanadaMap from "@/components/home/CanadaMap";
 import { getTopCities, getProvinces, generateSlug } from "@/lib/data-utils";
 import { formatNumber } from "@/lib/utils";
 
@@ -89,52 +90,20 @@ export default async function Home() {
         {/* ── Map Hero Section ── */}
         <section className="relative bg-surface-container rounded-xl overflow-hidden min-h-[600px] flex flex-col">
             <div className="absolute inset-0 z-0 bg-surface-dim">
-              {/* Map background - uses CSS fallback if image missing */}
-              <div 
-                className="w-full h-full bg-cover bg-center opacity-40 mix-blend-multiply filter grayscale"
-                style={{ backgroundImage: "url('/map-canada.jpg')" }}
-              />
+              <CanadaMap cities={topCities} />
             </div>
             {/* Map Overlay Content */}
             <div className="relative z-10 p-8 flex flex-col h-full justify-between pointer-events-none min-h-[600px]">
               <div className="max-w-md pointer-events-auto">
-                <span className="inline-block bg-primary text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-tighter uppercase mb-4">
+                <span className="inline-block bg-primary text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-tighter uppercase mb-4 shadow-sm">
                   Interactive Atlas
                 </span>
-                <h1 className="text-5xl font-extrabold text-primary font-manrope leading-tight mb-4">
+                <h1 className="text-5xl font-extrabold text-primary font-manrope leading-tight mb-4 drop-shadow-sm bg-surface-container-lowest/50 backdrop-blur-sm p-4 rounded-xl shadow-lg border-l-4 border-primary inline-block">
                   National Population Density Explorer
                 </h1>
-                <p className="text-on_surface-variant leading-relaxed font-medium">
+                <p className="text-on_surface-variant leading-relaxed font-medium bg-surface-container-lowest/70 backdrop-blur-sm p-4 rounded-lg inline-block shadow-md">
                   Discover demographic insights across 32 major metropolitan hubs. Hover over markers to see real-time census adjustments.
                 </p>
-              </div>
-
-              {/* City markers (positioned absolutely on the map area) */}
-              <div className="absolute inset-0">
-                {/* Toronto */}
-                <div className="absolute top-[75%] left-[70%] group pointer-events-auto">
-                  <div className="w-4 h-4 bg-tertiary rounded-full ring-4 ring-tertiary/20 cursor-pointer animate-pulse" />
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-32 bg-surface-container-lowest p-2 rounded shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                    <p className="text-xs font-bold text-primary">Toronto</p>
-                    <p className="text-[10px] text-on_surface-variant">Pop: 2.93M</p>
-                  </div>
-                </div>
-                {/* Vancouver */}
-                <div className="absolute top-[65%] left-[15%] group pointer-events-auto">
-                  <div className="w-4 h-4 bg-primary rounded-full ring-4 ring-primary/20 cursor-pointer" />
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-32 bg-surface-container-lowest p-2 rounded shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                    <p className="text-xs font-bold text-primary">Vancouver</p>
-                    <p className="text-[10px] text-on_surface-variant">Pop: 675k</p>
-                  </div>
-                </div>
-                {/* Montreal */}
-                <div className="absolute top-[72%] left-[78%] group pointer-events-auto">
-                  <div className="w-4 h-4 bg-primary rounded-full ring-4 ring-primary/20 cursor-pointer" />
-                </div>
-                {/* Ottawa */}
-                <div className="absolute top-[74%] left-[74%] group pointer-events-auto">
-                  <div className="w-4 h-4 bg-primary rounded-full ring-4 ring-primary/20 cursor-pointer" />
-                </div>
               </div>
 
               <div className="flex gap-4 pointer-events-auto">
