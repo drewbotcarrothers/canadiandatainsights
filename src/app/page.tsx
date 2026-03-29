@@ -92,34 +92,6 @@ export default async function Home() {
             <div className="absolute inset-0 z-0 bg-surface-dim">
               <CanadaMap cities={topCities} />
             </div>
-            {/* Map Overlay Content */}
-            <div className="relative z-10 p-8 flex flex-col h-full justify-between pointer-events-none min-h-[600px]">
-              <div className="max-w-md pointer-events-auto">
-                <span className="inline-block bg-primary text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-tighter uppercase mb-4 shadow-sm">
-                  Interactive Atlas
-                </span>
-                <h1 className="text-5xl font-extrabold text-primary font-manrope leading-tight mb-4 drop-shadow-sm bg-surface-container-lowest/50 backdrop-blur-sm p-4 rounded-xl shadow-lg border-l-4 border-primary inline-block">
-                  National Population Density Explorer
-                </h1>
-                <p className="text-on_surface-variant leading-relaxed font-medium bg-surface-container-lowest/70 backdrop-blur-sm p-4 rounded-lg inline-block shadow-md">
-                  Discover demographic insights across 32 major metropolitan hubs. Hover over markers to see real-time census adjustments.
-                </p>
-              </div>
-
-              <div className="flex gap-4 pointer-events-auto">
-                <div className="bg-surface-container-lowest/90 backdrop-blur-sm p-4 rounded-lg flex gap-6 items-center shadow-lg border-l-4 border-primary">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] uppercase font-bold text-on_surface-variant">Data Maturity</span>
-                    <span className="text-sm font-bold text-primary">2021 Census Ref.</span>
-                  </div>
-                  <div className="w-px h-8 bg-outline-variant" />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] uppercase font-bold text-on_surface-variant">Coverage</span>
-                    <span className="text-sm font-bold text-primary">98.4% National</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </section>
 
         {/* ── Provincial Insights Grid ── */}

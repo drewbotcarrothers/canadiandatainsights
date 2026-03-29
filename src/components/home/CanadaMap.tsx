@@ -63,6 +63,13 @@ export default function CanadaMap({ cities }: { cities: any[] }) {
                 onMouseLeave={() => setTooltip(null)}
                 onClick={() => router.push(`/location/${slug}`)}
               />
+              <text
+                textAnchor="middle"
+                y={15}
+                className="fill-on_surface-variant font-inter text-[8px] font-bold pointer-events-none drop-shadow-md select-none"
+              >
+                {cleanName}
+              </text>
             </Marker>
           );
         })}
