@@ -86,10 +86,8 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* ── Main Content Grid: Map + Sidebar ── */}
-        <div className="editorial-grid items-start">
-          {/* Map Hero Section */}
-          <section className="relative bg-surface-container rounded-xl overflow-hidden min-h-[600px] flex flex-col">
+        {/* ── Map Hero Section ── */}
+        <section className="relative bg-surface-container rounded-xl overflow-hidden min-h-[600px] flex flex-col">
             <div className="absolute inset-0 z-0 bg-surface-dim">
               {/* Map background - uses CSS fallback if image missing */}
               <div 
@@ -155,10 +153,6 @@ export default async function Home() {
             </div>
           </section>
 
-          {/* Sidebar Panel */}
-          <MetroHubsSidebar cities={topCities} />
-        </div>
-
         {/* ── Provincial Insights Grid ── */}
         <section className="mt-20">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
@@ -211,6 +205,10 @@ export default async function Home() {
           </div>
         </section>
 
+        {/* ── Metropolitan Hubs Section ── */}
+        <section className="mt-20 mb-12">
+          <MetroHubsSidebar cities={topCities} />
+        </section>
 
       </main>
 
