@@ -6,7 +6,7 @@ import { getTopCities, getProvinces, generateSlug } from "@/lib/data-utils";
 import { formatNumber } from "@/lib/utils";
 
 export default async function Home() {
-  const topCities = await getTopCities(7);
+  const topCities = await getTopCities(32);
   const provinces = await getProvinces();
 
   const nationalStats = {

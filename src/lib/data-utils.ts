@@ -53,7 +53,18 @@ export async function getLocationBySlug(slug: string): Promise<LocationData | un
 
 export function generateSlug(name: string): string {
   if (!name) return "unknown";
-  return name
+  
+  let targetName = name;
+  if (name.includes(",")) {
+    const parts = name.split(",");
+    const suffix = parts[1].trim();
+    // Use short name for Cities/Villes, otherwise full name to prevent collisions.
+    if (/^(City|Ville|Cité)/i.test(suffix)) {
+      targetName = parts[0];
+    }
+  }
+
+  return targetName
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");

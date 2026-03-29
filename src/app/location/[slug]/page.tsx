@@ -20,6 +20,8 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
     notFound();
   }
 
+  const displayName = location.GEO_NAME.split(",")[0];
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -31,24 +33,19 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
             <nav className="flex items-center gap-2 text-on_surface-variant font-inter text-[10px] uppercase tracking-widest mb-6">
               <span className="hover:text-primary transition-colors cursor-pointer">Canada</span>
               <span className="opacity-30">/</span>
-              <span className="text-primary font-bold">{location.GEO_NAME}</span>
+              <span className="text-primary font-bold">{displayName}</span>
             </nav>
             
             <div className="flex flex-col lg:flex-row justify-between items-start gap-12">
               <div className="max-w-2xl">
                 <h1 className="font-manrope text-5xl font-bold text-primary mb-4 leading-tight">
-                  {location.GEO_NAME} <span className="text-tertiary">Profile</span>
+                  {displayName} <span className="text-tertiary">Profile</span>
                 </h1>
                 <p className="text-on_surface-variant font-inter text-lg leading-relaxed mb-8">
-                  A comprehensive demographic breakdown of the {location.GEO_LEVEL.toLowerCase()} 
-                  using data from the 2021 Statistics Canada Census.
+                  A comprehensive demographic breakdown using data from the 2021 Statistics Canada Census.
                 </p>
                 
                 <div className="flex flex-wrap gap-4">
-                  <div className="glass px-4 py-2 rounded-md shadow-sm">
-                    <span className="text-on_surface-variant font-inter text-[10px] uppercase font-bold mr-2">Geo Level:</span>
-                    <span className="text-primary font-manrope font-bold text-sm">{location.GEO_LEVEL}</span>
-                  </div>
                   <div className="glass px-4 py-2 rounded-md shadow-sm">
                     <span className="text-on_surface-variant font-inter text-[10px] uppercase font-bold mr-2">National Rank:</span>
                     <span className="text-primary font-manrope font-bold text-sm">
