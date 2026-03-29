@@ -1,9 +1,9 @@
 import { getAllLocations, getLocationBySlug, generateSlug, getLocationsByProvince } from "@/lib/data-utils";
-import Link from "next/link";
 import { formatNumber, formatPercent, formatCurrency } from "@/lib/utils";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import DataCard from "@/components/ui/DataCard";
+import SortableLocationTable from "@/components/location/SortableLocationTable";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
@@ -153,82 +153,19 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
 
         {/* Province Cities & Towns Table */}
         {isProvince && provinceCities.length > 0 && (
-          <section className="py-20 bg-background">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-primary font-manrope text-headline-sm mb-4 accent-bar pl-6">
-                Cities & Towns in {displayName}
-              </h2>
-              <p className="text-on_surface-variant font-inter text-sm mb-10 max-w-2xl">
-                All {provinceCities.length.toLocaleString()} census subdivisions in {displayName}, sorted by 2021 population.
-              </p>
-
-              <div className="overflow-x-auto rounded-xl border border-outline-variant/20 shadow-sm">
-                <table className="w-full text-left">
-                  <thead>
-                    <tr className="bg-surface-container-low border-b border-outline-variant/30">
-                      <th className="px-4 py-3 font-manrope font-bold text-xs text-on_surface-variant uppercase tracking-wider">#</th>
-                      <th className="px-4 py-3 font-manrope font-bold text-xs text-on_surface-variant uppercase tracking-wider">Location</th>
-                      <th className="px-4 py-3 font-manrope font-bold text-xs text-on_surface-variant uppercase tracking-wider text-right">Population (2021)</th>
-                      <th className="px-4 py-3 font-manrope font-bold text-xs text-on_surface-variant uppercase tracking-wider text-right hidden sm:table-cell">Growth</th>
-                      <th className="px-4 py-3 font-manrope font-bold text-xs text-on_surface-variant uppercase tracking-wider text-right hidden md:table-cell">Avg Age</th>
-                      <th className="px-4 py-3 font-manrope font-bold text-xs text-on_surface-variant uppercase tracking-wider text-right hidden lg:table-cell">Median Income</th>
-                      <th className="px-4 py-3 font-manrope font-bold text-xs text-on_surface-variant uppercase tracking-wider text-right hidden lg:table-cell">Employment Rate</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {provinceCities.map((city, index) => {
-                      const cityName = city.GEO_NAME.split(",")[0];
-                      const citySlug = generateSlug(city.GEO_NAME);
-                      const growthPct = city.POP_CHANGE_PCT;
-                      return (
-                        <tr
-                          key={city.ALT_GEO_CODE}
-                          className={`border-b border-outline-variant/10 hover:bg-surface-container-low/50 transition-colors ${
-                            index % 2 === 0 ? "bg-surface-container-lowest" : "bg-background"
-                          }`}
-                        >
-                          <td className="px-4 py-3 font-inter text-xs text-on_surface-variant">
-                            {index + 1}
-                          </td>
-                          <td className="px-4 py-3">
-                            <Link
-                              href={`/location/${citySlug}`}
-                              className="font-manrope font-bold text-sm text-primary hover:text-tertiary transition-colors underline-offset-2 hover:underline"
-                            >
-                              {cityName}
-                            </Link>
-                          </td>
-                          <td className="px-4 py-3 font-inter font-bold text-sm text-right">
-                            {city.POP_2021?.toLocaleString() || "—"}
-                          </td>
-                          <td className="px-4 py-3 font-inter font-bold text-sm text-right hidden sm:table-cell">
-                            {growthPct != null ? (
-                              <span className={growthPct > 0 ? "text-green-600" : growthPct < 0 ? "text-red-500" : ""}>
-                                {growthPct > 0 ? "+" : ""}{growthPct.toFixed(1)}%
-                              </span>
-                            ) : "—"}
-                          </td>
-                          <td className="px-4 py-3 font-inter text-sm text-right hidden md:table-cell">
-                            {city.POP_AVG_AGE?.toFixed(1) || "—"}
-                          </td>
-                          <td className="px-4 py-3 font-inter text-sm text-right hidden lg:table-cell">
-                            {city.HH_INCOME_MEDIAN_AFTER_TAX
-                              ? `$${(city.HH_INCOME_MEDIAN_AFTER_TAX / 1000).toFixed(0)}k`
-                              : "—"}
-                          </td>
-                          <td className="px-4 py-3 font-inter text-sm text-right hidden lg:table-cell">
-                            {city.LABOUR_EMPLOYMENT_RATE
-                              ? `${city.LABOUR_EMPLOYMENT_RATE.toFixed(1)}%`
-                              : "—"}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
+          <SortableLocationTable
+            cities={provinceCities.map((c) => ({
+              ALT_GEO_CODE: c.ALT_GEO_CODE,
+              GEO_NAME: c.GEO_NAME,
+              slug: generateSlug(c.GEO_NAME),
+              POP_2021: c.POP_2021,
+              POP_CHANGE_PCT: c.POP_CHANGE_PCT,
+              POP_AVG_AGE: c.POP_AVG_AGE,
+              HH_INCOME_MEDIAN_AFTER_TAX: c.HH_INCOME_MEDIAN_AFTER_TAX,
+              LABOUR_EMPLOYMENT_RATE: c.LABOUR_EMPLOYMENT_RATE,
+            }))}
+            provinceName={displayName}
+          />
         )}
 
         {/* Final CTA / Footer context */}
