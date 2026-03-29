@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 border-t border-slate-200/50 pt-12">
         <div className="flex flex-col items-center md:items-start gap-2">
           <Link href="/" className="font-bold text-slate-900 text-xl font-manrope tracking-tighter">
-            CanadaData Atlas
+            CanadianDataInsights
           </Link>
           <p className="font-medium font-inter text-[10px] uppercase tracking-widest text-slate-500">
             &copy; {currentYear} Statistics Canada Data Atlas. All rights reserved.
