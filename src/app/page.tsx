@@ -211,56 +211,7 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* ── Featured Analysis Section ── */}
-        <section className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div>
-            <h3 className="font-manrope font-bold text-3xl text-primary mb-6">Demographic Shifts</h3>
-            <div className="space-y-6">
-              <div className="flex gap-4 p-4 rounded-xl hover:bg-surface-container-low transition-colors group">
-                <div className="w-12 h-12 rounded-lg bg-[#d3e4ff] flex items-center justify-center text-primary shrink-0">
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg group-hover:text-primary transition-colors">Urban Migration Patterns</h4>
-                  <p className="text-sm text-on_surface-variant leading-relaxed">
-                    Analysis of intra-provincial movement reveals a significant trend towards mid-sized metropolitan areas like Kelowna and Halifax.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4 p-4 rounded-xl hover:bg-surface-container-low transition-colors group">
-                <div className="w-12 h-12 rounded-lg bg-[#ffdad7] flex items-center justify-center text-tertiary shrink-0">
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg group-hover:text-tertiary transition-colors">The Aging Frontier</h4>
-                  <p className="text-sm text-on_surface-variant leading-relaxed">
-                    Median age distribution across the Maritimes has reached an all-time high, necessitating new infrastructure paradigms.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          {/* Deep Dive Card */}
-          <div className="bg-primary p-8 rounded-2xl relative overflow-hidden flex flex-col justify-center">
-            <div className="relative z-10 text-white">
-              <h3 className="text-2xl font-bold font-manrope mb-4">Deep Dive: Census Methodology</h3>
-              <p className="text-white/80 mb-8 max-w-sm">
-                Understand how we utilize advanced satellite imagery and ground-truth surveys to validate the 2021-2024 demographic projections.
-              </p>
-              <button className="bg-surface-container-lowest text-primary px-6 py-2.5 rounded-lg font-bold text-sm hover:scale-105 transition-transform flex items-center gap-2 self-start">
-                Read Whitepaper
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />
