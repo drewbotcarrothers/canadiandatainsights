@@ -185,13 +185,13 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
                 </div>
               </div>
 
-              <div className="w-full lg:w-96 aspect-video bg-surface-dim rounded-xl overflow-hidden relative shadow-ambient">
+              <div className="w-full lg:w-1/2 aspect-video bg-surface-dim rounded-xl overflow-hidden relative shadow-ambient">
                 <iframe
                   title={`Map of ${displayName}, Canada`}
                   className="absolute inset-0 w-full h-full border-0"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(displayName + ', ' + (d.PROVINCE || 'Canada'))}&zoom=${isProvince ? 5 : 11}`}
+                  src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(displayName + ', ' + (d.PROVINCE || 'Canada'))}&zoom=${isProvince ? 4 : 10}`}
                 />
               </div>
             </div>
