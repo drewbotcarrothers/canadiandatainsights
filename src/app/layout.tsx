@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   title: "Canadian Data Insights | Census Demographics",
   description: "High-end, data-driven editorial platform for Canadian census demographic insights.",
   keywords: ["Canada", "Census", "Demographics", "Population", "Income", "Data"],
+  verification: {
+    google: "1rpj4sYjoNg21ETHEg3g-XPuSOAaK6NyVBeVvDMBTiI",
+  },
 };
 
 export default function RootLayout({
