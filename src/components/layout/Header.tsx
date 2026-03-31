@@ -34,6 +34,12 @@ export default async function Header() {
             Sources
           </Link>
           <Link
+            href="/blog"
+            className="text-on_surface-variant font-medium hover:text-primary transition-colors font-inter text-sm"
+          >
+            Blog
+          </Link>
+          <Link
             href="/about"
             className="text-on_surface-variant font-medium hover:text-primary transition-colors font-inter text-sm"
           >
