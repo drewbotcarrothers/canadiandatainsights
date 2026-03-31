@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 import { getAllLocations, generateSlug } from '@/lib/data-utils';
 
+export const dynamic = 'force-static';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://canadiandatainsights.com';
   
