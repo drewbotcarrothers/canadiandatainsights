@@ -14,6 +14,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://canadiandatainsights.com"),
   title: "Canadian Data Insights | Census Demographics",
   description: "High-end, data-driven editorial platform for Canadian census demographic insights.",
   keywords: ["Canada", "Census", "Demographics", "Population", "Income", "Data"],
