@@ -122,6 +122,7 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
     { label: "$90k–$100k", value: d.INCOME_DIST_90K_100K },
     { label: "$100k+", value: d.INCOME_DIST_100K_PLUS },
   ].filter((b) => b.value != null);
+  const incomeDistTotal = incomeDistBrackets.reduce((acc, b) => acc + (b.value || 0), 0);
   const maxIncomeBracket = Math.max(...incomeDistBrackets.map((b) => b.value || 0));
 
   // Language knowledge
@@ -323,7 +324,7 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
                 {incomeDistBrackets.length > 0 ? (
                   <div id="income-card-chart" className="card-tonal p-6 rounded-xl border border-outline-variant/10">
                     {incomeDistBrackets.map((b) => (
-                      <DistributionBar key={b.label} label={b.label} value={b.value} max={maxIncomeBracket} color="bg-tertiary" />
+                      <DistributionBar key={b.label} label={b.label} value={b.value} max={maxIncomeBracket} total={incomeDistTotal} color="bg-tertiary" />
                     ))}
                   </div>
                 ) : (
@@ -391,7 +392,7 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
                 {langBreakdown.length > 0 ? (
                   <div id="lang-card-chart" className="card-tonal p-6 rounded-xl border border-outline-variant/10">
                     {langBreakdown.map((l) => (
-                      <DistributionBar key={l.label} label={l.label} value={l.value} max={maxLang} color="bg-primary/60" />
+                      <DistributionBar key={l.label} label={l.label} value={l.value} max={maxLang} total={motherTongueTotal} color="bg-primary/60" />
                     ))}
                   </div>
                 ) : (
