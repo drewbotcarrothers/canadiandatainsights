@@ -27,15 +27,21 @@ function StatRow({ label, value, sub }: { label: string; value: string | number 
   );
 }
 
-function DistributionBar({ label, value, max, color = "bg-primary" }: { label: string; value: number; max: number; color?: string }) {
-  const pct = max > 0 ? (value / max) * 100 : 0;
+function DistributionBar({ label, value, max, total, color = "bg-primary" }: { label: string; value: number; max: number; total?: number; color?: string }) {
+  const barPct = max > 0 ? (value / max) * 100 : 0;
+  const totalPct = total && total > 0 ? (value / total) * 100 : null;
   return (
     <div className="flex items-center gap-3 py-1.5">
       <span className="text-on_surface-variant font-inter text-sm w-24 shrink-0 text-right">{label}</span>
       <div className="flex-grow h-5 bg-surface-container-low rounded-sm overflow-hidden">
-        <div className={`h-full ${color} rounded-sm transition-all`} style={{ width: `${Math.max(pct, 1)}%` }} />
+        <div className={`h-full ${color} rounded-sm transition-all`} style={{ width: `${Math.max(barPct, 1)}%` }} />
       </div>
-      <span className="font-inter font-bold text-sm w-20 text-right">{formatNumber(value)}</span>
+      <div className="flex items-center gap-2 w-36 shrink-0 justify-end">
+        <span className="font-inter font-bold text-sm text-right text-primary">{formatNumber(value)}</span>
+        {totalPct !== null && (
+          <span className="text-on_surface-variant font-inter text-xs opacity-60 w-14 text-right">({totalPct.toFixed(1)}%)</span>
+        )}
+      </div>
     </div>
   );
 }
@@ -229,7 +235,7 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
                 {ageBrackets.length > 0 ? (
                   <div id="pop-card-chart" className="card-tonal p-6 rounded-xl border border-outline-variant/10">
                     {ageBrackets.map((b) => (
-                      <DistributionBar key={b.label} label={b.label} value={b.value} max={maxAgeBracket} />
+                      <DistributionBar key={b.label} label={b.label} value={b.value} max={maxAgeBracket} total={d.POP_2021} />
                     ))}
                   </div>
                 ) : (
