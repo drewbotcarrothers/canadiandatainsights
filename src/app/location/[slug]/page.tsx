@@ -18,10 +18,10 @@ function StatRow({ label, value, sub }: { label: string; value: string | number 
   if (value == null || value === "") return null;
   return (
     <div className="flex justify-between items-baseline py-2.5 border-b border-outline-variant/10 last:border-0">
-      <span className="text-on_surface-variant font-inter text-sm">{label}</span>
+      <span className="text-on_surface-variant font-inter text-base">{label}</span>
       <div className="text-right">
-        <span className="font-manrope font-bold text-sm text-primary">{value}</span>
-        {sub && <span className="block text-on_surface-variant font-inter text-[10px] uppercase tracking-wider mt-0.5">{sub}</span>}
+        <span className="font-manrope font-bold text-base text-primary">{value}</span>
+        {sub && <span className="block text-on_surface-variant font-inter text-xs uppercase tracking-wider mt-0.5">{sub}</span>}
       </div>
     </div>
   );
@@ -31,11 +31,11 @@ function DistributionBar({ label, value, max, color = "bg-primary" }: { label: s
   const pct = max > 0 ? (value / max) * 100 : 0;
   return (
     <div className="flex items-center gap-3 py-1.5">
-      <span className="text-on_surface-variant font-inter text-xs w-20 shrink-0 text-right">{label}</span>
+      <span className="text-on_surface-variant font-inter text-sm w-24 shrink-0 text-right">{label}</span>
       <div className="flex-grow h-5 bg-surface-container-low rounded-sm overflow-hidden">
         <div className={`h-full ${color} rounded-sm transition-all`} style={{ width: `${Math.max(pct, 1)}%` }} />
       </div>
-      <span className="font-inter font-bold text-xs w-16 text-right">{formatNumber(value)}</span>
+      <span className="font-inter font-bold text-sm w-20 text-right">{formatNumber(value)}</span>
     </div>
   );
 }
@@ -205,7 +205,7 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Left: key stats */}
-              <div className="lg:col-span-1 card-tonal p-6 rounded-xl border border-outline-variant/10">
+              <div id="pop-card-stats" className="lg:col-span-1 card-tonal p-6 rounded-xl border border-outline-variant/10">
                 <StatRow label="Total Population (2021)" value={formatNumber(d.POP_2021)} />
                 <StatRow label="Total Population (2016)" value={formatNumber(d.POP_2016)} />
                 <StatRow
@@ -227,7 +227,7 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
               <div className="lg:col-span-2">
                 <h3 className="text-primary font-manrope font-bold text-lg mb-6">Population Age Distribution</h3>
                 {ageBrackets.length > 0 ? (
-                  <div className="card-tonal p-6 rounded-xl border border-outline-variant/10">
+                  <div id="pop-card-chart" className="card-tonal p-6 rounded-xl border border-outline-variant/10">
                     {ageBrackets.map((b) => (
                       <DistributionBar key={b.label} label={b.label} value={b.value} max={maxAgeBracket} />
                     ))}
@@ -247,8 +247,8 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Average household size + size distribution */}
-              <div className="card-tonal p-6 rounded-xl border border-outline-variant/10">
-                <h3 className="text-primary font-manrope font-bold text-base mb-6">Household Size</h3>
+              <div id="hh-card-stats" className="card-tonal p-6 rounded-xl border border-outline-variant/10">
+                <h3 className="text-primary font-manrope font-bold text-lg mb-6">Household Size</h3>
                 <StatRow label="Average Household Size" value={d.HH_AVG_SIZE?.toFixed(1)} />
                 <StatRow label="Total Private Dwellings" value={d.TOTAL_PRIVATE_DWELLINGS ? formatNumber(d.TOTAL_PRIVATE_DWELLINGS) : null} />
                 <StatRow label="Occupied Private Dwellings" value={d.OCCUPIED_PRIVATE_DWELLINGS ? formatNumber(d.OCCUPIED_PRIVATE_DWELLINGS) : null} />
@@ -267,16 +267,16 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
               </div>
 
               {/* Household composition */}
-              <div className="card-tonal p-6 rounded-xl border border-outline-variant/10">
-                <h3 className="text-primary font-manrope font-bold text-base mb-6">Household Composition</h3>
+              <div id="hh-card-chart" className="card-tonal p-6 rounded-xl border border-outline-variant/10">
+                <h3 className="text-primary font-manrope font-bold text-lg mb-6">Household Composition</h3>
                 {hhTypes.length > 0 ? (
                   <div>
                     {hhTypes.map((h) => (
                       <div key={h.label} className="flex justify-between items-center py-2.5 border-b border-outline-variant/10 last:border-0">
-                        <span className="text-on_surface-variant font-inter text-sm">{h.label}</span>
+                        <span className="text-on_surface-variant font-inter text-base">{h.label}</span>
                         <div className="text-right">
-                          <span className="font-manrope font-bold text-sm text-primary">{formatNumber(h.value)}</span>
-                          <span className="text-on_surface-variant font-inter text-[10px] ml-2">({pct(h.value, hhTotal)})</span>
+                          <span className="font-manrope font-bold text-base text-primary">{formatNumber(h.value)}</span>
+                          <span className="text-on_surface-variant font-inter text-xs ml-2">({pct(h.value, hhTotal)})</span>
                         </div>
                       </div>
                     ))}
@@ -296,8 +296,8 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Key income stats */}
-              <div className="card-tonal p-6 rounded-xl border border-outline-variant/10">
-                <h3 className="text-primary font-manrope font-bold text-base mb-6">Summary</h3>
+              <div id="income-card-stats" className="card-tonal p-6 rounded-xl border border-outline-variant/10">
+                <h3 className="text-primary font-manrope font-bold text-lg mb-6">Summary</h3>
                 <StatRow label="Avg. Household Income" value={d.HH_INCOME_AVG_AFTER_TAX ? formatCurrency(d.HH_INCOME_AVG_AFTER_TAX) : null} sub="After tax" />
                 <StatRow label="Median Household Income" value={d.HH_INCOME_MEDIAN_AFTER_TAX ? formatCurrency(d.HH_INCOME_MEDIAN_AFTER_TAX) : null} sub="After tax" />
                 <StatRow label="Avg. Individual Income" value={d.INCOME_AVG_AFTER_TAX ? formatCurrency(d.INCOME_AVG_AFTER_TAX) : null} sub="After tax" />
@@ -315,7 +315,7 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
               <div className="lg:col-span-2">
                 <h3 className="text-primary font-manrope font-bold text-lg mb-6">Individual Income Distribution</h3>
                 {incomeDistBrackets.length > 0 ? (
-                  <div className="card-tonal p-6 rounded-xl border border-outline-variant/10">
+                  <div id="income-card-chart" className="card-tonal p-6 rounded-xl border border-outline-variant/10">
                     {incomeDistBrackets.map((b) => (
                       <DistributionBar key={b.label} label={b.label} value={b.value} max={maxIncomeBracket} color="bg-tertiary" />
                     ))}
@@ -334,8 +334,8 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
             <SectionHeader title={`${displayName} Employment`} id="employment" />
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="card-tonal p-6 rounded-xl border border-outline-variant/10">
-                <h3 className="text-primary font-manrope font-bold text-base mb-6">Labour Force</h3>
+              <div id="employment-card-stats" className="card-tonal p-6 rounded-xl border border-outline-variant/10">
+                <h3 className="text-primary font-manrope font-bold text-lg mb-6">Labour Force</h3>
                 <StatRow label="Employment Rate" value={d.LABOUR_EMPLOYMENT_RATE != null ? `${d.LABOUR_EMPLOYMENT_RATE.toFixed(1)}%` : null} />
                 <StatRow label="Unemployment Rate" value={d.LABOUR_UNEMPLOYMENT_RATE != null ? `${d.LABOUR_UNEMPLOYMENT_RATE.toFixed(1)}%` : null} />
                 <StatRow label="Total Labour Force" value={d.LABOUR_IN_FORCE ? formatNumber(d.LABOUR_IN_FORCE) : null} />
@@ -344,8 +344,8 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
                 <StatRow label="Not in Labour Force" value={d.LABOUR_NOT_IN_FORCE ? formatNumber(d.LABOUR_NOT_IN_FORCE) : null} />
               </div>
 
-              <div className="card-tonal p-6 rounded-xl border border-outline-variant/10">
-                <h3 className="text-primary font-manrope font-bold text-base mb-6">Low Income Prevalence</h3>
+              <div id="low-income-card-stats" className="card-tonal p-6 rounded-xl border border-outline-variant/10">
+                <h3 className="text-primary font-manrope font-bold text-lg mb-6">Low Income Prevalence</h3>
                 <StatRow label="Overall Low-Income Rate" value={d.LOW_INCOME_PCT != null ? `${d.LOW_INCOME_PCT.toFixed(1)}%` : null} />
                 <StatRow label="Children (0–17)" value={d.LOW_INCOME_0_17_PCT != null ? `${d.LOW_INCOME_0_17_PCT.toFixed(1)}%` : null} />
                 <StatRow label="Adults (18–64)" value={d.LOW_INCOME_18_64_PCT != null ? `${d.LOW_INCOME_18_64_PCT.toFixed(1)}%` : null} />
@@ -365,8 +365,8 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Language knowledge */}
-              <div className="card-tonal p-6 rounded-xl border border-outline-variant/10">
-                <h3 className="text-primary font-manrope font-bold text-base mb-6">Language Knowledge</h3>
+              <div id="lang-card-stats" className="card-tonal p-6 rounded-xl border border-outline-variant/10">
+                <h3 className="text-primary font-manrope font-bold text-lg mb-6">Language Knowledge</h3>
                 <StatRow label="English Only" value={d.LANG_KNOWLEDGE_EN_ONLY ? `${formatNumber(d.LANG_KNOWLEDGE_EN_ONLY)} (${pct(d.LANG_KNOWLEDGE_EN_ONLY, langTotal)})` : null} />
                 <StatRow label="French Only" value={d.LANG_KNOWLEDGE_FR_ONLY ? `${formatNumber(d.LANG_KNOWLEDGE_FR_ONLY)} (${pct(d.LANG_KNOWLEDGE_FR_ONLY, langTotal)})` : null} />
                 <StatRow label="English & French" value={d.LANG_KNOWLEDGE_EN_AND_FR ? `${formatNumber(d.LANG_KNOWLEDGE_EN_AND_FR)} (${pct(d.LANG_KNOWLEDGE_EN_AND_FR, langTotal)})` : null} />
@@ -383,7 +383,7 @@ export default async function LocationProfile({ params }: { params: Promise<{ sl
               <div className="lg:col-span-2">
                 <h3 className="text-primary font-manrope font-bold text-lg mb-6">Top Mother Tongue Languages</h3>
                 {langBreakdown.length > 0 ? (
-                  <div className="card-tonal p-6 rounded-xl border border-outline-variant/10">
+                  <div id="lang-card-chart" className="card-tonal p-6 rounded-xl border border-outline-variant/10">
                     {langBreakdown.map((l) => (
                       <DistributionBar key={l.label} label={l.label} value={l.value} max={maxLang} color="bg-primary/60" />
                     ))}
